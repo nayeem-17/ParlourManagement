@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import java.util.List;
 import entities.Appointment;
 import entities.Service;
-import sun.reflect.generics.tree.Tree;
+//import sun.reflect.generics.tree.Tree;
 
 public class DbServices {
 
@@ -33,15 +33,15 @@ public class DbServices {
 
     private DbServices() throws SQLException {
 
-        DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
-
-        String dbURL = "jdbc:sqlserver://localhost:1433/project;user=sa;password=Rahi-8000";
-
-        Connection conn = DriverManager.getConnection(dbURL);
-
-        if (conn != null) {
-            System.out.println("Connected");
-        }
+//        DriverManager.registerDriver(new com.microsoft.sqlserver.jdbc.SQLServerDriver());
+//
+//        String dbURL = "jdbc:sqlserver://localhost:1433/project;user=sa;password=Rahi-8000";
+//
+//        Connection conn = DriverManager.getConnection(dbURL);
+//
+//        if (conn != null) {
+//            System.out.println("Connected");
+//        }
 
     }
 

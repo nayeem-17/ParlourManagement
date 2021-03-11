@@ -124,7 +124,8 @@ public class HomeAppointmentController {
     @FXML
     void admin(ActionEvent event) throws InterruptedException {
 
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminServiceAdd.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminSigninPage.fxml"));
+
 
         Stage stage = (Stage) homeBorderPane.getScene().getWindow();
         Scene scene = null;

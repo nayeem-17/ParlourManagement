@@ -227,7 +227,7 @@ public class HomeAppointmentController {
         }
     }
 
-    private static void showAlert(Alert.AlertType alertType, String title, String message) {
+    public static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -235,3 +235,4 @@ public class HomeAppointmentController {
         alert.showAndWait();
     }
 }
+//javaFxControllers.HomeAppointmentController.showAlert

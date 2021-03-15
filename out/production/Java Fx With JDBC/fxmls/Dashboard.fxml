@@ -7,27 +7,33 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="721.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.Dashboard">
-   <left>
-      <VBox prefHeight="721.0" prefWidth="269.0" BorderPane.alignment="CENTER">
-         <children>
-            <Button fx:id="dashboard" mnemonicParsing="false" prefHeight="119.0" prefWidth="271.0" text="Dashboard" />
-          <Button fx:id="service" mnemonicParsing="false" prefHeight="114.0" prefWidth="269.0" text="Services" />
-            <Button fx:id="appointment" mnemonicParsing="false" prefHeight="110.0" prefWidth="269.0" text="Appointments" />
-            <Button fx:id="addCustomer" mnemonicParsing="false" prefHeight="108.0" prefWidth="269.0" text="Add Customer" />
-            <Button fx:id="customerList" mnemonicParsing="false" prefHeight="126.0" prefWidth="269.0" text="Customer List" />
-            <Button fx:id="report" mnemonicParsing="false" prefHeight="123.0" prefWidth="281.0" text="Reports" />
-         </children>
-      </VBox>
-   </left>
-   <top>
-      <Label prefHeight="63.0" prefWidth="378.0" text="Admin Panel" BorderPane.alignment="CENTER">
-         <font>
-            <Font name="DejaVu Sans ExtraLight" size="55.0" />
-         </font>
-      </Label>
-   </top>
-   <center>
-      <AnchorPane fx:id="anchPane" prefHeight="773.0" prefWidth="898.0" BorderPane.alignment="CENTER" />
-   </center>
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="721.0" prefWidth="1173.0" xmlns="http://javafx.com/javafx/15.0.1"
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.Dashboard">
+    <left>
+        <VBox prefHeight="721.0" prefWidth="269.0" BorderPane.alignment="CENTER">
+            <children>
+                <Button fx:id="dashboard" mnemonicParsing="false" prefHeight="119.0" prefWidth="271.0"
+                        text="Dashboard"/>
+                <Button fx:id="service" mnemonicParsing="false" prefHeight="114.0" prefWidth="269.0" text="Services"/>
+                <Button fx:id="appointment" mnemonicParsing="false" prefHeight="110.0" prefWidth="269.0"
+                        text="Appointments"/>
+                <Button fx:id="addCustomer" mnemonicParsing="false" prefHeight="108.0" prefWidth="269.0"
+                        text="Add Customer"/>
+                <Button fx:id="customerList" mnemonicParsing="false" prefHeight="126.0" prefWidth="269.0"
+                        text="Customer List"/>
+                <Button fx:id="report" mnemonicParsing="false" prefHeight="123.0" prefWidth="281.0" text="Reports"/>
+            </children>
+        </VBox>
+    </left>
+    <top>
+        <Label prefHeight="63.0" prefWidth="378.0" text="Admin Panel" BorderPane.alignment="CENTER">
+            <font>
+                <Font name="DejaVu Sans ExtraLight" size="55.0"/>
+            </font>
+        </Label>
+    </top>
+    <center>
+        <AnchorPane fx:id="anchPane" prefHeight="773.0" prefWidth="898.0" BorderPane.alignment="CENTER"/>
+    </center>
 </BorderPane>

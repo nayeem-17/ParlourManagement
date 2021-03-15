@@ -6,24 +6,23 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="246.0" layoutY="14.0" prefHeight="46.0" prefWidth="368.0" text="All Appointments" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="14.0">
-         <font>
-            <Font size="40.0" />
-         </font>
-      </Label>
-      <TableView layoutX="-1.0" layoutY="68.0" prefHeight="467.0" prefWidth="859.0">
-        <columns>
-          <TableColumn fx:id="appointmentId" prefWidth="139.0" text="Appointment No." />
-            <TableColumn fx:id="name" prefWidth="147.0" text="Name" />
-          <TableColumn fx:id="mobilenumber" prefWidth="128.0" text="Mobile Number" />
-            <TableColumn fx:id="appDate" prefWidth="144.0" text="Appointment Date" />
-            <TableColumn fx:id="appTime" prefWidth="139.0" text="Application Time" />
-            <TableColumn fx:id="rejected" prefWidth="74.0" text="Rejected" />
-            <TableColumn fx:id="accepted" prefWidth="87.0" text="Accepted" />
-        </columns>
-      </TableView>
-   </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="533.0" prefWidth="859.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.AppointmentController">
+    <children>
+        <Label layoutX="246.0" layoutY="14.0" prefHeight="46.0" prefWidth="368.0" text="All Appointments" AnchorPane.leftAnchor="246.0" AnchorPane.rightAnchor="245.0" AnchorPane.topAnchor="14.0">
+            <font>
+                <Font size="40.0" />
+            </font>
+        </Label>
+        <TableView fx:id="serviceTable" layoutX="-1.0" layoutY="68.0" prefHeight="467.0" prefWidth="859.0">
+            <columns>
+                <TableColumn fx:id="appointmentId" prefWidth="139.0" text="Appointment No." />
+                <TableColumn fx:id="name" prefWidth="147.0" text="Name" />
+                <TableColumn fx:id="mobilenumber" prefWidth="128.0" text="Mobile Number" />
+                <TableColumn fx:id="appDate" prefWidth="144.0" text="Appointment Date" />
+                <TableColumn fx:id="appTime" prefWidth="139.0" text="Application Time" />
+                <TableColumn fx:id="rejected" prefWidth="74.0" text="Rejected" />
+                <TableColumn fx:id="accepted" prefWidth="87.0" text="Accepted" />
+            </columns>
+        </TableView>
+    </children>
 </AnchorPane>

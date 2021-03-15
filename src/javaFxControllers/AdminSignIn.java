@@ -1,17 +1,15 @@
-/**
- * Sample Skeleton for 'AdminSigninPage.fxml' Controller Class
- */
-
 package javaFxControllers;
 
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import controllers.LoginController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
@@ -45,7 +43,7 @@ public class AdminSignIn {
         assert paswordField != null : "fx:id=\"paswordField\" was not injected: check your FXML file 'AdminSigninPage.fxml'.";
         assert signInButton != null : "fx:id=\"signInButton\" was not injected: check your FXML file 'AdminSigninPage.fxml'.";
         signInButton.setOnAction(e -> {
-            if (usernameFIeld.getText().equals("admin") && paswordField.getText().equals("admin")) {
+            if (LoginController.isValid(usernameFIeld.getText(), paswordField.getText())) {
                 FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Dashboard.fxml"));
 
                 Stage stage = (Stage) anchorpane.getScene().getWindow();
@@ -56,9 +54,10 @@ public class AdminSignIn {
                     ioException.printStackTrace();
                 }
                 stage.setScene(scene);
-            }
+            } else {
+                HomeAppointmentController.showAlert(Alert.AlertType.ERROR, "Wrong username and password!", "Please enter right username and password");
+
+            };
         });
     }
-
-
 }

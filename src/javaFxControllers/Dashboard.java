@@ -6,12 +6,10 @@ package javaFxControllers;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collection;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -65,22 +63,61 @@ public class Dashboard {
         assert anchPane != null : "fx:id=\"anchPane\" was not injected: check your FXML file 'Dashboard.fxml'.";
 
         dashboard.setOnAction(e -> {
-            new Thread(() -> {
-                try {
-                    AnchorPane pane = FXMLLoader.load(getClass().getResource("fxmls/adminDashboard.fxml"));
-                    anchPane.getChildren().setAll(pane);
-                } catch (IOException ioException) {
-                    ioException.printStackTrace();
-                }
-            }).start();
+
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminDashboard.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
+
         });
         service.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Services.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
         });
         appointment.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Appointment.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
         });
         addCustomer.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddCustomer.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
         });
         customerList.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/CustomerList.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
         });
         report.setOnAction(e -> {
         });

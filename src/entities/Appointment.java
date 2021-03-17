@@ -1,27 +1,27 @@
 package entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.UUID;
 
 public class Appointment implements Serializable {
     private Integer appointmentId;
-    private UUID appointmentNumber;
+    private String appointmentNumber;
     private String name;
     private String email;
     private String phoneNumber;
-    private LocalDate appointMakingDate; //time when the appointment is made
+    private String appointMakingDate; //time when the appointment is made
     private String appointmentTime;
     private String selectedService;
-    private LocalDate appointmentDate; //the appointment date
+    private String appointmentDate; //the appointment date
     private String remark;
     private String status;
-    private LocalDate remarkDate;
+    private String remarkDate;
 
     public Appointment() {
+        status = "pending";
     }
 
-    public Appointment(Integer appointmentId, UUID appointmentNumber, String name, String email, String phoneNumber, LocalDate appointMakingDate, String appointmentTime, String selectedService, LocalDate appointmentDate, String remark, String status, LocalDate remarkDate) {
+    public Appointment(Integer appointmentId, String appointmentNumber, String name, String email, String phoneNumber, String appointMakingDate, String appointmentTime, String selectedService, String appointmentDate, String remark, String status, String remarkDate) {
         this.appointmentId = appointmentId;
         this.appointmentNumber = appointmentNumber;
         this.name = name;
@@ -44,11 +44,11 @@ public class Appointment implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public UUID getAppointmentNumber() {
+    public String getAppointmentNumber() {
         return appointmentNumber;
     }
 
-    public void setAppointmentNumber(UUID appointmentNumber) {
+    public void setAppointmentNumber(String appointmentNumber) {
         this.appointmentNumber = appointmentNumber;
     }
 
@@ -76,11 +76,11 @@ public class Appointment implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public LocalDate getAppointMakingDate() {
+    public String getAppointMakingDate() {
         return appointMakingDate;
     }
 
-    public void setAppointMakingDate(LocalDate appointMakingDate) {
+    public void setAppointMakingDate(String appointMakingDate) {
         this.appointMakingDate = appointMakingDate;
     }
 
@@ -100,11 +100,11 @@ public class Appointment implements Serializable {
         this.selectedService = selectedService;
     }
 
-    public LocalDate getAppointmentDate() {
+    public String getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(LocalDate appointmentDate) {
+    public void setAppointmentDate(String appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -124,12 +124,29 @@ public class Appointment implements Serializable {
         this.status = status;
     }
 
-    public LocalDate getRemarkDate() {
+    public String getRemarkDate() {
         return remarkDate;
     }
 
-    public void setRemarkDate(LocalDate remarkDate) {
+    public void setRemarkDate(String remarkDate) {
         this.remarkDate = remarkDate;
     }
 
+    @Override
+    public String toString() {
+        return "Appointment{" +
+                "appointmentId=" + appointmentId +
+                ", appointmentNumber=" + appointmentNumber +
+                ", name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", appointMakingDate='" + appointMakingDate + '\'' +
+                ", appointmentTime='" + appointmentTime + '\'' +
+                ", selectedService='" + selectedService + '\'' +
+                ", appointmentDate='" + appointmentDate + '\'' +
+                ", remark='" + remark + '\'' +
+                ", status='" + status + '\'' +
+                ", remarkDate='" + remarkDate + '\'' +
+                '}';
+    }
 }

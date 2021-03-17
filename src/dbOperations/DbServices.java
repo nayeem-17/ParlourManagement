@@ -163,4 +163,30 @@ public class DbServices {
         }
     }
 
+    public List<Appointment> getAllAppointments() {
+        List<Appointment> appointments = new ArrayList<>();
+        try {
+            Connection connection = DbServices.getInstance().getConnection();
+            Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT * FROM Appointment";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                Appointment appointment = new Appointment();
+                appointment.setAppointmentNumber(rs.getString("appointment id"));
+                appointment.setName(rs.getString("name"));
+                appointment.setEmail(rs.getString("email"));
+                appointment.setAppointMakingDate(rs.getString("create at"));
+                appointment.setPhoneNumber(rs.getString("mobile"));
+                appointment.setSelectedService(rs.getString("service"));
+                appointment.setAppointmentDate(rs.getString("date"));
+                appointment.setAppointmentTime(rs.getString("time"));
+                appointment.setStatus(rs.getString("status"));
+
+                appointments.add(appointment);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return appointments;
+    }
 }

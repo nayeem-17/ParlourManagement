@@ -25,6 +25,5 @@ public class CustomerSignUp {
     }
 
     public static void main(String[] args) {
-        for (int i = 0; i < 10; i++) signup("nayeem" + i, "email", "1911910p");
     }
 }

@@ -2,12 +2,14 @@ package javaFxControllers;
 
 import dbOperations.DbServices;
 import entities.Appointment;
+
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -199,14 +201,14 @@ public class HomeAppointmentController {
     private void saveToDatabase() {
         Appointment appointment = new Appointment();
 
-        appointment.setAppointmentNumber(UUID.randomUUID());
+        appointment.setAppointmentNumber(UUID.randomUUID().toString());
         appointment.setName(appointmentMakerName.getText());
         appointment.setEmail(appointmentMakerEmail.getText());
         appointment.setPhoneNumber(appointmantMakerPhone.getText());
-        appointment.setAppointMakingDate(LocalDate.now());
+        appointment.setAppointMakingDate(LocalDate.now().toString());
         appointment.setAppointmentTime(appointmentTimeChoiceBox.getSelectionModel().getSelectedItem());
         appointment.setSelectedService(selectedService.getSelectionModel().getSelectedItem());
-        appointment.setAppointmentDate(appointmentDate.getValue());
+        appointment.setAppointmentDate(appointmentDate.getValue().toString());
 
         final String response = dbServices.addAnAppoinment(appointment);
 

@@ -44,9 +44,6 @@ public class Dashboard {
     @FXML // fx:id="customerList"
     private Button customerList; // Value injected by FXMLLoader
 
-    @FXML // fx:id="report"
-    private Button report; // Value injected by FXMLLoader
-
     @FXML // fx:id="anchPane"
     private AnchorPane anchPane; // Value injected by FXMLLoader
 
@@ -59,7 +56,6 @@ public class Dashboard {
         assert appointment != null : "fx:id=\"appointment\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert addCustomer != null : "fx:id=\"addCustomer\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert customerList != null : "fx:id=\"customerList\" was not injected: check your FXML file 'Dashboard.fxml'.";
-        assert report != null : "fx:id=\"report\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert anchPane != null : "fx:id=\"anchPane\" was not injected: check your FXML file 'Dashboard.fxml'.";
 
         dashboard.setOnAction(e -> {
@@ -118,8 +114,6 @@ public class Dashboard {
                 ioException.printStackTrace();
             }
             stage.setScene(scene);
-        });
-        report.setOnAction(e -> {
         });
     }
 }

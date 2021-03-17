@@ -15,6 +15,8 @@
             <children>
                 <Button fx:id="dashboard" mnemonicParsing="false" prefHeight="119.0" prefWidth="271.0"
                         text="Dashboard"/>
+                <Button fx:id="addService" mnemonicParsing="false" prefHeight="123.0" prefWidth="269.0"
+                        text="Add Services"/>
                 <Button fx:id="service" mnemonicParsing="false" prefHeight="114.0" prefWidth="269.0" text="Services"/>
                 <Button fx:id="appointment" mnemonicParsing="false" prefHeight="110.0" prefWidth="269.0"
                         text="Appointments"/>
@@ -22,7 +24,6 @@
                         text="Add Customer"/>
                 <Button fx:id="customerList" mnemonicParsing="false" prefHeight="126.0" prefWidth="269.0"
                         text="Customer List"/>
-                <Button fx:id="report" mnemonicParsing="false" prefHeight="123.0" prefWidth="281.0" text="Reports"/>
             </children>
         </VBox>
     </left>

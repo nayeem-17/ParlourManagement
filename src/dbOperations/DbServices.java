@@ -91,41 +91,51 @@ public class DbServices {
         }
     }
 
-    public synchronized List<String> getServicesList() {
-//        return null;
-        try {
-//            entityManager.getTransaction().begin();
-//            List<String> servicesList = entityManager.createQuery("SELECT t.serviceName FROM Service t").getResultList();
-//            entityManager.getTransaction().commit();
-//            return servicesList;
-        } catch (Exception e) {
-            return null;
-        }
-        return null;
-    }
-
-    public synchronized List<Service> getAllServicesRecords() {
-        return null;
+//    public synchronized List<String> getServicesList() {
+////        return null;
 //        try {
-//            entityManager.getTransaction().begin();
-//            List<Service> servicesList = entityManager.createQuery("SELECT t FROM Service t").getResultList();
-//            entityManager.getTransaction().commit();
-//            return servicesList;
+////            entityManager.getTransaction().begin();
+////            List<String> servicesList = entityManager.createQuery("SELECT t.serviceName FROM Service t").getResultList();
+////            entityManager.getTransaction().commit();
+////            return servicesList;
 //        } catch (Exception e) {
 //            return null;
 //        }
+//        return null;
+//    }
+
+    public synchronized List<Service> getAllServicesRecords() {
+        List<Service> services = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT * FROM Service";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                Service service = new Service();
+                service.setId(rs.getString("id"));
+                service.setServiceName(rs.getString("name"));
+                service.setServicePrice(rs.getString("price"));
+                services.add(service);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return services;
     }
 
     public synchronized List<String> getTimeSlots() {
-        return null;
-//        try {
-//            entityManager.getTransaction().begin();
-//            List<String> timeSlotLists = entityManager.createQuery("SELECT t.timeSlots FROM TimeSlots t").getResultList();
-//            entityManager.getTransaction().commit();
-//            return timeSlotLists;
-//        } catch (Exception e) {
-//            return null;
-//        }
+        List<String> times = new ArrayList<>();
+        try {
+            Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
+            String query = "SELECT * FROM Timeslot";
+            ResultSet rs = statement.executeQuery(query);
+            while (rs.next()) {
+                times.add(rs.getString("time"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return times;
     }
 
     public synchronized List<Customer> getCustomer() {

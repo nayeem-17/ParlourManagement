@@ -47,11 +47,14 @@ public class Dashboard {
     @FXML // fx:id="anchPane"
     private AnchorPane anchPane; // Value injected by FXMLLoader
 
+    @FXML // fx:id="addService"
+    private Button addService; // Value injected by FXMLLoader
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert borderPane != null : "fx:id=\"borderPane\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert dashboard != null : "fx:id=\"dashboard\" was not injected: check your FXML file 'Dashboard.fxml'.";
+        assert addService != null : "fx:id=\"addService\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert service != null : "fx:id=\"service\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert appointment != null : "fx:id=\"appointment\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert addCustomer != null : "fx:id=\"addCustomer\" was not injected: check your FXML file 'Dashboard.fxml'.";
@@ -71,8 +74,19 @@ public class Dashboard {
             stage.setScene(scene);
 
         });
+        addService.setOnAction(e->{
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddServices.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
+        });
         service.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Services.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/ServiceTable.fxml"));
             Stage stage = (Stage) borderPane.getScene().getWindow();
             Scene scene = null;
             try {

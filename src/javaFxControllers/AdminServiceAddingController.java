@@ -37,7 +37,7 @@ public class AdminServiceAddingController {
         Service service = new Service();
 
         service.setServiceName(serviceName);
-        service.setServicePrice(servicePrice);
+        service.setServicePrice(servicePrice+"");
 
         String response = dbServices.addNewService(service);
 

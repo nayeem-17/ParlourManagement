@@ -1,15 +1,18 @@
 package javaFxControllers;
 
+import controllers.AptController;
 import dbOperations.DbServices;
 import entities.Appointment;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import entities.Service;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -63,12 +66,14 @@ public class HomeAppointmentController {
             @Override
             public void run() {
 
-                final List<String> servicesNamesList = dbServices.getServicesList();
+                final List<Service> services = dbServices.getAllServicesRecords();
 
-                if (!servicesNamesList.isEmpty()) {
+                if (!services.isEmpty()) {
                     Platform.runLater(new Runnable() {
                         @Override
                         public void run() {
+                            List<String> servicesNamesList = new ArrayList<>();
+                            for (Service s : services) servicesNamesList.add(s.getServiceName());
                             selectedService.getItems().addAll(servicesNamesList);
                             selectedService.setValue(servicesNamesList.get(0)); //Add the first item as a default value
                             selectServices.setVisible(false);
@@ -161,8 +166,7 @@ public class HomeAppointmentController {
     }
 
     @FXML
-    void services(ActionEvent event
-    ) throws IOException {
+    void services(ActionEvent event) throws IOException {
 
         Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxmls/Services.fxml"));
 
@@ -210,20 +214,20 @@ public class HomeAppointmentController {
         appointment.setSelectedService(selectedService.getSelectionModel().getSelectedItem());
         appointment.setAppointmentDate(appointmentDate.getValue().toString());
 
-        final String response = dbServices.addAnAppoinment(appointment);
+        final boolean response = AptController.addAppointment(appointment);
 
-        if (response.equals("Can not make an appointment, please try again")) {
+        if (response == false) {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    showAlert(Alert.AlertType.ERROR, "Error making an appointment", response);
+                    showAlert(Alert.AlertType.ERROR, "Error making an appointment", "error occured");
                 }
             });
         } else {
             Platform.runLater(new Runnable() {
                 @Override
                 public void run() {
-                    showAlert(Alert.AlertType.CONFIRMATION, "Successfull", response);
+                    showAlert(Alert.AlertType.CONFIRMATION, "Successfull", "Successfully added");
                 }
             });
         }

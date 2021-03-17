@@ -88,7 +88,6 @@ public class AptController {
 //    }
 
     public static void main(String[] args) {
-        String id="d769e074-9e54-4a30-8941-3c5f6b8ee0e6";
-        updateStatus(id);
+        System.out.println(Math.abs(-12121));
     }
 }

@@ -15,6 +15,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
 
@@ -49,6 +50,11 @@ public class Dashboard {
 
     @FXML // fx:id="addService"
     private Button addService; // Value injected by FXMLLoader
+
+    @FXML // fx:id="invoice"
+    private Button invoice; // Value injected by FXMLLoader
+
+
     @FXML
         // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -60,6 +66,7 @@ public class Dashboard {
         assert addCustomer != null : "fx:id=\"addCustomer\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert customerList != null : "fx:id=\"customerList\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert anchPane != null : "fx:id=\"anchPane\" was not injected: check your FXML file 'Dashboard.fxml'.";
+        assert invoice != null : "fx:id=\"invoice\" was not injected: check your FXML file 'Dashboard.fxml'.";
 
         dashboard.setOnAction(e -> {
 
@@ -74,7 +81,7 @@ public class Dashboard {
             stage.setScene(scene);
 
         });
-        addService.setOnAction(e->{
+        addService.setOnAction(e -> {
             FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddServices.fxml"));
             Stage stage = (Stage) borderPane.getScene().getWindow();
             Scene scene = null;
@@ -129,5 +136,18 @@ public class Dashboard {
             }
             stage.setScene(scene);
         });
+
+        invoice.setOnAction(e -> {
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Invoice.fxml"));
+            Stage stage = (Stage) borderPane.getScene().getWindow();
+            Scene scene = null;
+            try {
+                scene = new Scene((Parent) loader.load(), 1180, 627);
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+            stage.setScene(scene);
+        });
     }
+
 }

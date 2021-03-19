@@ -5,7 +5,13 @@
 package javaFxControllers;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
+
+import dbOperations.DbServices;
+import entities.Appointment;
+import entities.Customer;
+import entities.Service;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
@@ -32,17 +38,26 @@ public class admindashboard {
     @FXML // fx:id="totalServices"
     private Label totalServices; // Value injected by FXMLLoader
 
-    @FXML // fx:id="todaySales"
-    private Label todaySales; // Value injected by FXMLLoader
 
-    @FXML // This method is called by the FXMLLoader when initialization is complete
+    @FXML
+        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
         assert customerNumber != null : "fx:id=\"customerNumber\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
         assert appointmentNumber != null : "fx:id=\"appointmentNumber\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
         assert acceptedApt != null : "fx:id=\"acceptedApt\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
         assert rejectedApts != null : "fx:id=\"rejectedApts\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
         assert totalServices != null : "fx:id=\"totalServices\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        assert todaySales != null : "fx:id=\"todaySales\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-
+        List<Customer> customers = DbServices.getInstance().getCustomer();
+        customerNumber.setText(customers.size() + "");
+        List<Appointment> appointments = DbServices.getInstance().getAllAppointments();
+        appointmentNumber.setText(appointments.size() + "");
+        int accepted = 0;
+        for (Appointment a : appointments) {
+            if (a.getStatus().equals("accepted")) accepted++;
+        }
+        acceptedApt.setText(accepted + "");
+        rejectedApts.setText((appointments.size() - accepted) + "");
+        List<Service> services = DbServices.getInstance().getAllServicesRecords();
+        totalServices.setText(services.size() + "");
     }
 }

@@ -137,7 +137,7 @@ public class HomeAppointmentController {
         Stage stage = (Stage) homeBorderPane.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene((Parent) loader.load(), 1180, 627);
+            scene = new Scene((Parent) loader.load(), 1180, 800);
         } catch (IOException e) {
             e.printStackTrace();
         }

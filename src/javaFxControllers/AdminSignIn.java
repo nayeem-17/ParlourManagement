@@ -49,7 +49,7 @@ public class AdminSignIn {
                 Stage stage = (Stage) anchorpane.getScene().getWindow();
                 Scene scene = null;
                 try {
-                    scene = new Scene((Parent) loader.load(), 1180, 627);
+                    scene = new Scene((Parent) loader.load(), 1180, 800);
                 } catch (IOException ioException) {
                     ioException.printStackTrace();
                 }

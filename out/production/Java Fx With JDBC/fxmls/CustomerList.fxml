@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="729.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.CustomerList">
+<AnchorPane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.CustomerList">
     <children>
-        <TableView fx:id="tableView" layoutX="-2.0" layoutY="63.0" prefHeight="396.0" prefWidth="729.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="60.0">
+        <TableView fx:id="tableView" layoutX="-2.0" layoutY="85.0" prefHeight="570.0" prefWidth="898.0" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="85.0">
             <columns>
                 <TableColumn fx:id="name" prefWidth="160.0" text="Name" />
                 <TableColumn fx:id="email" prefWidth="195.0" text="Email" />
@@ -18,19 +18,16 @@
                 <TableColumn fx:id="creationDate" prefWidth="200.0" text="Creation Date" />
             </columns>
         </TableView>
-        <Label layoutX="206.0" layoutY="-2.0" prefHeight="64.0" prefWidth="263.0" text="Customer List">
+        <Label layoutX="299.0" layoutY="14.0" prefHeight="64.0" prefWidth="263.0" text="Customer List">
             <font>
                 <Font size="36.0" />
             </font>
         </Label>
-      <HBox layoutX="238.0" layoutY="457.0" prefHeight="41.0" prefWidth="492.0">
-         <children>
-            <Button fx:id="assignService" mnemonicParsing="false" prefHeight="42.0" prefWidth="240.0" text="Assign Service">
-               <font>
-                  <Font name="DejaVu Sans ExtraLight" size="22.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
+      <HBox layoutX="238.0" layoutY="457.0" prefHeight="41.0" prefWidth="492.0" />
+      <Button fx:id="assignService" layoutX="310.0" layoutY="688.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="240.0" text="Assign Service">
+         <font>
+            <Font name="DejaVu Sans ExtraLight" size="22.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>

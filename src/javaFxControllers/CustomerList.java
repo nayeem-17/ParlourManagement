@@ -78,7 +78,7 @@ public class CustomerList {
             Stage stage = (Stage) pane.getScene().getWindow();
             Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                scene = new Scene((Parent) loader.load(), 889, 773);
 
                 int index = tableView.getSelectionModel().getSelectedIndex();
                 AssignService assignService = loader.getController();

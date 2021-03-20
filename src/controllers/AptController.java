@@ -30,7 +30,7 @@ public class AptController {
     }
 
     public synchronized static boolean deleteAppointment(String appointmentNumber) {
-        String query = "DELETE FROM Appointment WHERE " + "'appointment id' = " + "'" + appointmentNumber + "';";
+        String query = "DELETE FROM Appointment WHERE " + "`appointment id` = " + "'" + appointmentNumber + "';";
         System.out.println(query);
         try {
             Connection connection = DbServices.getInstance().getConnection();
@@ -46,7 +46,7 @@ public class AptController {
     }
 
     public synchronized static boolean updateStatus(String appointmentNumber) {
-        String query = "UPDATE Appointment SET status='accepted' WHERE " + "'appointment id' = " + "'" + appointmentNumber + "';";
+        String query = "UPDATE Appointment SET status='accepted' WHERE " + "`appointment id` = " + "'" + appointmentNumber + "';";
         System.out.println(query);
         try {
             Connection connection = DbServices.getInstance().getConnection();

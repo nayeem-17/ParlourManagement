@@ -9,10 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane fx:id="pane" prefHeight="575.0" prefWidth="808.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.InvoiceDetail">
+<AnchorPane fx:id="pane" nodeOrientation="LEFT_TO_RIGHT" prefHeight="800.0" prefWidth="1180.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.InvoiceDetail">
    <children>
-      <VBox layoutY="2.0" prefHeight="185.0" prefWidth="801.0">
+      <VBox layoutX="206.0" layoutY="17.0" prefHeight="185.0" prefWidth="801.0">
          <children>
             <HBox prefHeight="100.0" prefWidth="200.0">
                <children>
@@ -27,7 +26,7 @@
                <children>
                   <Label prefHeight="62.0" prefWidth="231.0" text="Name" />
                   <Label fx:id="name" prefHeight="62.0" prefWidth="184.0" />
-                  <Label prefHeight="62.0" prefWidth="199.0" text="Email" />
+                  <Label prefHeight="62.0" prefWidth="206.0" text="Email" />
                   <Label fx:id="email" prefHeight="62.0" prefWidth="187.0" />
                </children>
             </HBox>
@@ -41,13 +40,13 @@
             </HBox>
          </children>
       </VBox>
-      <TableView fx:id="serviceTable" layoutX="4.0" layoutY="202.0" prefHeight="220.0" prefWidth="801.0">
+      <TableView fx:id="serviceTable" layoutX="206.0" layoutY="202.0" prefHeight="220.0" prefWidth="801.0">
         <columns>
           <TableColumn fx:id="serviceName" prefWidth="404.0" text="Service" />
           <TableColumn fx:id="serviceCost" prefWidth="396.0" text="Cost" />
         </columns>
       </TableView>
-      <HBox layoutX="373.0" layoutY="422.0" prefHeight="68.0" prefWidth="433.0">
+      <HBox layoutX="469.0" layoutY="422.0" prefHeight="68.0" prefWidth="433.0">
          <children>
             <Label prefHeight="68.0" prefWidth="202.0" text="Total Cost">
                <font>
@@ -57,6 +56,6 @@
             <Label fx:id="totalCost" prefHeight="68.0" prefWidth="195.0" text="0" />
          </children>
       </HBox>
-      <Button fx:id="backButton" layoutX="682.0" layoutY="513.0" mnemonicParsing="false" prefHeight="62.0" prefWidth="127.0" text="Back" />
+      <Button fx:id="backButton" layoutX="504.0" layoutY="522.0" mnemonicParsing="false" prefHeight="110.0" prefWidth="250.0" text="Back" />
    </children>
 </AnchorPane>

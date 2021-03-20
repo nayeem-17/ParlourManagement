@@ -68,85 +68,147 @@ public class Dashboard {
         assert anchPane != null : "fx:id=\"anchPane\" was not injected: check your FXML file 'Dashboard.fxml'.";
         assert invoice != null : "fx:id=\"invoice\" was not injected: check your FXML file 'Dashboard.fxml'.";
 
+        try {
+            Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/AdminDashboard.fxml"));
+            borderPane.setCenter(view);
+        } catch (IOException ioException) {
+            ioException.printStackTrace();
+        }
+
         dashboard.setOnAction(e -> {
 
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminDashboard.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/AdminDashboard.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminDashboard.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
 
         });
         addService.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddServices.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/AddServices.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddServices.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
         service.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/ServiceTable.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
+
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/ServiceTable.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/ServiceTable.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
         appointment.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Appointment.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
+
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/Appointment.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Appointment.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
         addCustomer.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddCustomer.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
+
+
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/AddCustomer.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+//
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AddCustomer.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
         customerList.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/CustomerList.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/CustomerList.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/CustomerList.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
 
         invoice.setOnAction(e -> {
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Invoice.fxml"));
-            Stage stage = (Stage) borderPane.getScene().getWindow();
-            Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                Pane view = new FXMLLoader().load(getClass().getClassLoader().getResource("fxmls/Invoice.fxml"));
+                borderPane.setCenter(view);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
-            stage.setScene(scene);
+
+//            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Invoice.fxml"));
+//            Stage stage = (Stage) borderPane.getScene().getWindow();
+//            Scene scene = null;
+//            try {
+//                scene = new Scene((Parent) loader.load(), 1180, 627);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//            stage.setScene(scene);
         });
     }
 

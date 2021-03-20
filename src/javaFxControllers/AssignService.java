@@ -109,11 +109,12 @@ public class AssignService {
             InvoiceController.insertInvoice(this.invoiceData);
 
 //            Return to prev scene
-            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/CustomerList.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/Dashboard.fxml"));
+
             Stage stage = (Stage) pane.getScene().getWindow();
             Scene scene = null;
             try {
-                scene = new Scene((Parent) loader.load(), 1180, 627);
+                scene = new Scene((Parent) loader.load(), 1180, 800);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

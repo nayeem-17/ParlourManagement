@@ -1,20 +1,13 @@
 package javaFxControllers;
 
-import controllers.AptController;
 import dbOperations.DbServices;
 import entities.Appointment;
-
 import java.io.IOException;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.UUID;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import entities.Service;
 import javafx.application.Platform;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -29,7 +22,7 @@ import javafx.stage.Stage;
 
 public class HomeAppointmentController {
 
-    DbServices dbServices = DbServices.getInstance(); //Get the database service class
+    DbServices dbServices = DbServices.getInstance();
 
     @FXML
     private BorderPane homeBorderPane;
@@ -50,7 +43,7 @@ public class HomeAppointmentController {
     private DatePicker appointmentDate;
 
     @FXML
-    private TextField appointmantMakerPhone;
+    private TextField appointmentMakerPhone;
 
     @FXML
     private ChoiceBox<String> appointmentTimeChoiceBox;
@@ -60,99 +53,68 @@ public class HomeAppointmentController {
 
     @FXML
     public void initialize() {
-        //Firing new thread to keep UI safe from hanging 
-        new Thread(new Runnable() {
 
-            @Override
-            public void run() {
+        new Thread(() -> {
 
-                final List<Service> services = dbServices.getAllServicesRecords();
+            final List<String> servicesNamesList = dbServices.getServicesName();
 
-                if (!services.isEmpty()) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            List<String> servicesNamesList = new ArrayList<>();
-                            for (Service s : services) servicesNamesList.add(s.getServiceName());
-                            selectedService.getItems().addAll(servicesNamesList);
-                            selectedService.setValue(servicesNamesList.get(0)); //Add the first item as a default value
-                            selectServices.setVisible(false);
-                        }
-                    });
-                } else {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            showAlert(Alert.AlertType.ERROR, "Can not get services", "Can not get services,please try again");
-                        }
-                    });
-                }
+            if (!servicesNamesList.isEmpty()) {
+                Platform.runLater(() -> {
+                    selectedService.getItems().addAll(servicesNamesList);
+                    selectedService.setValue(servicesNamesList.get(0));
+                    selectServices.setVisible(false);
+                });
+            } else {
+                Platform.runLater(() ->
+                        showAlert(Alert.AlertType.ERROR, "Can not get services",
+                                "Can not get services,please try again"));
             }
         }
         ).start();
 
-        //Fetching time slots on a new thread.
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
 
-                final List<String> timeslots = dbServices.getTimeSlots();
+        new Thread(() -> {
 
-                System.out.println(timeslots);
+            final List<String> timeslots = dbServices.getTimeSlots();
 
-                if (!timeslots.isEmpty()) {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            appointmentTimeChoiceBox.getItems().addAll(timeslots);
-                            appointmentTimeChoiceBox.setValue(timeslots.get(0));
-                            selectAppointmentTimeText.setVisible(false);
-                        }
+            System.out.println(timeslots);
 
-                    });
-                } else {
-                    Platform.runLater(new Runnable() {
-                        @Override
-                        public void run() {
-                            showAlert(Alert.AlertType.ERROR, "Can not get time slots", "Can not get time slots,please try again");
-                        }
-                    });
-                }
+            if (!timeslots.isEmpty()) {
+                Platform.runLater(() -> {
+                    appointmentTimeChoiceBox.getItems().addAll(timeslots);
+                    appointmentTimeChoiceBox.setValue(timeslots.get(0));
+                    selectAppointmentTimeText.setVisible(false);
+                });
+            } else {
+                Platform.runLater(() ->
+                        showAlert(Alert.AlertType.ERROR, "Can not get time slots",
+                                "Can not get time slots,please try again"));
             }
         }).start();
     }
 
     @FXML
-    void aboutUs(ActionEvent event
-    ) {
+    void aboutUs()
+    {
 
     }
 
     @FXML
-    void admin(ActionEvent event) throws InterruptedException {
-
-        FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminSigninPage.fxml"));
-
-
-        Stage stage = (Stage) homeBorderPane.getScene().getWindow();
-        Scene scene = null;
-        try {
-            scene = new Scene((Parent) loader.load(), 1180, 800);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        stage.setScene(scene);
+    void admin() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmls/AdminSigninPage.fxml")));
+        Stage primaryStage = (Stage) homeBorderPane.getScene().getWindow();
+        primaryStage.getScene().setRoot(root);
     }
 
     @FXML
-    void contactUs(ActionEvent event
-    ) {
+    void contactUs()
+    {
         FXMLLoader loader = new FXMLLoader(getClass().getClassLoader().getResource("fxmls/AdminTimeSlots.fxml"));
 
         Stage stage = (Stage) selectServices.getScene().getWindow();
         Scene scene = null;
         try {
-            scene = new Scene((Parent) loader.load(), 1114, 627);
+            scene = new Scene(loader.load(), 1114, 627);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -160,78 +122,81 @@ public class HomeAppointmentController {
     }
 
     @FXML
-    void homeScreen(ActionEvent event
-    ) {
+    void homeScreen()
+    {
 
     }
 
     @FXML
-    void services(ActionEvent event) throws IOException {
+    void services() throws IOException {
 
-        Parent root = FXMLLoader.load(getClass().getClassLoader().getResource("fxmls/Services.fxml"));
-
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmls/Services.fxml")));
         Stage primaryStage = (Stage) homeBorderPane.getScene().getWindow();
-
         primaryStage.getScene().setRoot(root);
     }
 
     @FXML
-    void makeAnAppointment(ActionEvent event) {
+    void makeAnAppointment()
+    {
         validateAppointmentInput();
     }
 
     private void validateAppointmentInput() {
-        if (appointmentMakerName.getText().isEmpty()) {
+
+        if (appointmentMakerName.getText().isEmpty())
+        {
             showAlert(Alert.AlertType.ERROR, "Appointment maker name can not be empty", "Please enter your name");
-        } else if (appointmentDate.getValue() == null) {
-            showAlert(Alert.AlertType.ERROR, "Appointment can not be empty", "Plese enter appoinment date");
-        } else if (appointmantMakerPhone.getText().isEmpty()) {
+        }
+        else if (appointmentDate.getValue() == null)
+        {
+            showAlert(Alert.AlertType.ERROR, "Appointment can not be empty", "Please enter appointment date");
+        }
+        else if (appointmentMakerName.getText().isEmpty())
+        {
             showAlert(Alert.AlertType.ERROR, "Appoint maker phone number can not be empty", "Please enter your mobile number");
-        } else if (appointmentDate.getValue().isBefore(LocalDate.now())) {
+        }
+        else if (appointmentDate.getValue().isBefore(LocalDate.now()))
+        {
             showAlert(Alert.AlertType.ERROR, "Date selection error", "Appointment selection date can not be before current date");
-        } else if (appointmantMakerPhone.getText().length() < 11) {
+        }
+        else if (appointmentMakerName.getText().length() < 11) {
             showAlert(Alert.AlertType.ERROR, "Phone Number invalid", "Please enter a valid phone number");
-        } else {
-            //Firing new thread for smooth operations
-            new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    saveToDatabase();
-                }
-            }).start();
+        }
+        else {
+            new Thread(this::saveToDatabase).start();
         }
     }
 
     private void saveToDatabase() {
+
         Appointment appointment = new Appointment();
 
-        appointment.setAppointmentNumber(UUID.randomUUID().toString());
+        appointment.setAppointmentNumber(UUID.randomUUID());
         appointment.setName(appointmentMakerName.getText());
         appointment.setEmail(appointmentMakerEmail.getText());
-        appointment.setPhoneNumber(appointmantMakerPhone.getText());
-        appointment.setAppointMakingDate(LocalDate.now().toString());
+        appointment.setPhoneNumber(appointmentMakerPhone.getText());
+        appointment.setAppointMakingDate(java.sql.Date.valueOf(LocalDate.now()));
         appointment.setAppointmentTime(appointmentTimeChoiceBox.getSelectionModel().getSelectedItem());
         appointment.setSelectedService(selectedService.getSelectionModel().getSelectedItem());
-        appointment.setAppointmentDate(appointmentDate.getValue().toString());
+        appointment.setAppointmentDate(java.sql.Date.valueOf(LocalDate.now()));
 
-        final boolean response = AptController.addAppointment(appointment);
+        final String response = dbServices.addAnAppointments(appointment);
 
-        if (response == false) {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(Alert.AlertType.ERROR, "Error making an appointment", "error occured");
-                }
-            });
+        if (response.equals("Can not make an appointment, please try again")) {
+            Platform.runLater(() -> showAlert(Alert.AlertType.ERROR, "Error making an appointment", response));
         } else {
-            Platform.runLater(new Runnable() {
-                @Override
-                public void run() {
-                    showAlert(Alert.AlertType.CONFIRMATION, "Successfull", "Successfully added");
-                }
+            Platform.runLater(() -> {
+
+                showAlert(Alert.AlertType.CONFIRMATION, "Successful", response);
+
+                appointmentMakerName.setText(null);
+                appointmentMakerEmail.setText(null);
+                appointmentMakerPhone.setText(null);
+                appointmentDate.setValue(null);
             });
         }
     }
+
 
     public static void showAlert(Alert.AlertType alertType, String title, String message) {
         Alert alert = new Alert(alertType);
@@ -241,4 +206,3 @@ public class HomeAppointmentController {
         alert.showAndWait();
     }
 }
-//javaFxControllers.HomeAppointmentController.showAlert

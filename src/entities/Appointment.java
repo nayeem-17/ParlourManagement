@@ -1,27 +1,33 @@
 package entities;
 
 import java.io.Serializable;
+import java.sql.Date;
 import java.util.UUID;
 
 public class Appointment implements Serializable {
+
     private Integer appointmentId;
-    private String appointmentNumber;
+    private UUID appointmentNumber;
     private String name;
     private String email;
     private String phoneNumber;
-    private String appointMakingDate; //time when the appointment is made
+    private Date appointMakingDate;
     private String appointmentTime;
     private String selectedService;
-    private String appointmentDate; //the appointment date
+    private Date appointmentDate;
     private String remark;
     private String status;
-    private String remarkDate;
+    private Date remarkDate;
+
 
     public Appointment() {
-        status = "pending";
     }
 
-    public Appointment(Integer appointmentId, String appointmentNumber, String name, String email, String phoneNumber, String appointMakingDate, String appointmentTime, String selectedService, String appointmentDate, String remark, String status, String remarkDate) {
+    public Appointment(Integer appointmentId, UUID appointmentNumber, String name,
+                       String email, String phoneNumber, Date appointMakingDate,
+                       String appointmentTime, String selectedService, Date appointmentDate,
+                       String remark, String status, Date remarkDate)
+    {
         this.appointmentId = appointmentId;
         this.appointmentNumber = appointmentNumber;
         this.name = name;
@@ -44,11 +50,11 @@ public class Appointment implements Serializable {
         this.appointmentId = appointmentId;
     }
 
-    public String getAppointmentNumber() {
+    public UUID getAppointmentNumber() {
         return appointmentNumber;
     }
 
-    public void setAppointmentNumber(String appointmentNumber) {
+    public void setAppointmentNumber(UUID appointmentNumber) {
         this.appointmentNumber = appointmentNumber;
     }
 
@@ -76,11 +82,11 @@ public class Appointment implements Serializable {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getAppointMakingDate() {
+    public Date getAppointMakingDate() {
         return appointMakingDate;
     }
 
-    public void setAppointMakingDate(String appointMakingDate) {
+    public void setAppointMakingDate(Date appointMakingDate) {
         this.appointMakingDate = appointMakingDate;
     }
 
@@ -100,11 +106,11 @@ public class Appointment implements Serializable {
         this.selectedService = selectedService;
     }
 
-    public String getAppointmentDate() {
+    public Date getAppointmentDate() {
         return appointmentDate;
     }
 
-    public void setAppointmentDate(String appointmentDate) {
+    public void setAppointmentDate(Date appointmentDate) {
         this.appointmentDate = appointmentDate;
     }
 
@@ -124,29 +130,11 @@ public class Appointment implements Serializable {
         this.status = status;
     }
 
-    public String getRemarkDate() {
+    public Date getRemarkDate() {
         return remarkDate;
     }
 
-    public void setRemarkDate(String remarkDate) {
+    public void setRemarkDate(Date remarkDate) {
         this.remarkDate = remarkDate;
-    }
-
-    @Override
-    public String toString() {
-        return "Appointment{" +
-                "appointmentId=" + appointmentId +
-                ", appointmentNumber=" + appointmentNumber +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", phoneNumber='" + phoneNumber + '\'' +
-                ", appointMakingDate='" + appointMakingDate + '\'' +
-                ", appointmentTime='" + appointmentTime + '\'' +
-                ", selectedService='" + selectedService + '\'' +
-                ", appointmentDate='" + appointmentDate + '\'' +
-                ", remark='" + remark + '\'' +
-                ", status='" + status + '\'' +
-                ", remarkDate='" + remarkDate + '\'' +
-                '}';
     }
 }

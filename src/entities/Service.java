@@ -4,18 +4,24 @@ import java.io.Serializable;
 
 public class Service implements Serializable {
 
-    private String id;
+    private Integer id;
     private String serviceName;
-    private String servicePrice;
+    private Double servicePrice;
 
     public Service() {
     }
 
-    public String getId() {
+    public Service(Integer id, String serviceName, Double servicePrice) {
+        this.id = id;
+        this.serviceName = serviceName;
+        this.servicePrice = servicePrice;
+    }
+
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -27,20 +33,11 @@ public class Service implements Serializable {
         this.serviceName = serviceName;
     }
 
-    public String getServicePrice() {
+    public Double getServicePrice() {
         return servicePrice;
     }
 
-    public void setServicePrice(String servicePrice) {
+    public void setServicePrice(Double servicePrice) {
         this.servicePrice = servicePrice;
-    }
-
-    @Override
-    public String toString() {
-        return "Service{" +
-                "id='" + id + '\'' +
-                ", serviceName='" + serviceName + '\'' +
-                ", servicePrice='" + servicePrice + '\'' +
-                '}';
     }
 }

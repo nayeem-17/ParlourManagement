@@ -1,35 +1,12 @@
 package controllers;
 
 import dbOperations.DbServices;
-import entities.Appointment;
-
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+
 
 public class AptController {
-    public static boolean addAppointment(Appointment appointment) {
 
-        try {
-            Connection connection = DbServices.getInstance().getConnection();
-            Statement statement = connection.createStatement();
-            String query = "INSERT INTO Appointment VALUES ( '" + appointment.getAppointmentNumber().toString()
-                    + "','" + appointment.getName() + "','" + appointment.getEmail() + "','" + appointment.getPhoneNumber()
-                    + "','" + appointment.getSelectedService() + "','" + appointment.getAppointmentDate() + "','" + appointment.getAppointmentTime()
-                    + "','" + appointment.getAppointMakingDate() + "','pending');";
-            statement.executeUpdate(query);
-            System.out.println(query);
-            System.out.println("Inserted successfully!");
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Error in Adding Appointment is " + e.getMessage());
-            return false;
-        }
-    }
-
-    public synchronized static boolean deleteAppointment(String appointmentNumber) {
+    public synchronized boolean deleteAppointment(String appointmentNumber) {
         String query = "DELETE FROM Appointment WHERE " + "`appointment id` = " + "'" + appointmentNumber + "';";
         System.out.println(query);
         try {

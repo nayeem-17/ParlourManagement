@@ -8,31 +8,30 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.AppointmentController">
-    <children>
-        <Label layoutX="270.0" layoutY="14.0" prefHeight="46.0" prefWidth="368.0" text="All Appointments" AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="14.0">
-            <font>
-                <Font size="40.0" />
-            </font>
-        </Label>
-        <TableView fx:id="serviceTable" layoutX="-1.0" layoutY="68.0" prefHeight="527.0" prefWidth="898.0">
-            <columns>
-                <TableColumn fx:id="appointmentId" prefWidth="153.0" text="Appointment No." />
-                <TableColumn fx:id="name" prefWidth="135.0" text="Name" />
-                <TableColumn fx:id="mobilenumber" prefWidth="164.0" text="Mobile Number" />
-                <TableColumn fx:id="appDate" prefWidth="144.0" text="Apt. Date" />
-                <TableColumn fx:id="appTime" prefWidth="109.0" text="Apt. Time" />
-                <TableColumn fx:id="serviceId" prefWidth="113.0" text="Service" />
-                <TableColumn fx:id="status" prefWidth="79.0" text="status" />
-            </columns>
-        </TableView>
-      <HBox layoutX="2.0" layoutY="652.0" prefHeight="75.0" prefWidth="829.0">
-         <children>
-            <Label prefHeight="75.0" prefWidth="395.0" />
-            <Button fx:id="acceptButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="205.0" text="Accept" />
-            <Label prefHeight="75.0" prefWidth="61.0" />
-            <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="183.0" text="Delete" />
-         </children>
-      </HBox>
-    </children>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0"
+            prefWidth="898.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="javaFxControllers.AppointmentController">
+    <Label layoutX="270.0" layoutY="14.0" prefHeight="46.0" prefWidth="368.0" text="All Appointments"
+           AnchorPane.leftAnchor="270.0" AnchorPane.rightAnchor="221.0" AnchorPane.topAnchor="14.0">
+        <font>
+            <Font size="40.0"/>
+        </font>
+    </Label>
+    <TableView fx:id="serviceTable" layoutX="-1.0" layoutY="68.0" prefHeight="527.0" prefWidth="898.0">
+        <columns>
+            <TableColumn fx:id="appointmentId" prefWidth="153.0" text="Appointment No."/>
+            <TableColumn fx:id="name" prefWidth="135.0" text="Name"/>
+            <TableColumn fx:id="mobilenumber" prefWidth="164.0" text="Mobile Number"/>
+            <TableColumn fx:id="appDate" prefWidth="144.0" text="Apt. Date"/>
+            <TableColumn fx:id="appTime" prefWidth="109.0" text="Apt. Time"/>
+            <TableColumn fx:id="serviceId" prefWidth="113.0" text="Service"/>
+            <TableColumn fx:id="status" prefWidth="79.0" text="status"/>
+        </columns>
+    </TableView>
+    <HBox layoutX="2.0" layoutY="652.0" prefHeight="75.0" prefWidth="829.0">
+        <Label prefHeight="75.0" prefWidth="395.0"/>
+        <Button fx:id="acceptButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="205.0" text="Accept"/>
+        <Label prefHeight="75.0" prefWidth="61.0"/>
+        <Button fx:id="deleteButton" mnemonicParsing="false" prefHeight="74.0" prefWidth="183.0" text="Delete"/>
+    </HBox>
 </AnchorPane>

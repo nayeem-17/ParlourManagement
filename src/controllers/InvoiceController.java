@@ -1,37 +1,38 @@
 package controllers;
 
 import dbOperations.DbServices;
-import entities.AssignS;
-import entities.Customer;
 import entities.InvoiceData;
 import entities.Service;
-import javaFxControllers.Invoice;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class InvoiceController {
-    public static boolean insertInvoice(InvoiceData invoiceData) {
-        if (invoiceData.getAssignSList().isEmpty()) return false;
+
+    public static void insertInvoice(InvoiceData invoiceData) {
+
+        if (invoiceData.getAssignSList().isEmpty())
+            return;
+
         try {
+            
             String date = invoiceData.getDate();
 
             Connection connection = DbServices.getInstance().getConnection();
             Statement statement = connection.createStatement();
             for (int i = 0; i < invoiceData.getAssignSList().size(); i++) {
+
                 String query = "INSERT INTO Invoice VALUES ( '" + invoiceData.getCutomerName() + "','"
                         + invoiceData.getAssignSList().get(i).getServiceName() + "','" +
                         invoiceData.getAssignSList().get(i).getServicePrice() + "','" + date + "','" + invoiceData.getInvoiceId()
                         + "');";
+
                 statement.executeUpdate(query);
                 System.out.println(query);
                 System.out.println("Inserted successfully!");
             }
-            return true;
         } catch (SQLException e) {
             System.out.println("Error in Invoice insertion is " + e.getMessage());
-            return false;
         }
     }
 
@@ -45,14 +46,14 @@ public class InvoiceController {
             while (rs.next()) {
                 Service service = new Service();
                 service.setServiceName(rs.getString("servicename"));
-                service.setServicePrice(rs.getString("serviceprice"));
+                service.setServicePrice(rs.getDouble("serviceprice"));
                 services.add(service);
                 System.out.println(service);
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-//        List<InvoiceData> finalList= new ArrayList<>(
+
         return services;
     }
 

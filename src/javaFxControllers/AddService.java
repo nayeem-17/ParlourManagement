@@ -40,6 +40,7 @@ public class AddService {
         assert addService != null : "fx:id=\"addService\" was not injected: check your FXML file 'AddServices.fxml'.";
 
         addService.setOnAction(e -> {
+            /*
             Service service = new Service();
             service.setServiceName(serviceName.getText());
             service.setServicePrice(servicePrice.getText());
@@ -47,6 +48,8 @@ public class AddService {
             service.setId(Math.abs(random.nextInt()) + "");
             AddServiceController.addService(service);
             HomeAppointmentController.showAlert(Alert.AlertType.CONFIRMATION, "Successful", "Successfully created!");
+
+             */
         });
     }
 }

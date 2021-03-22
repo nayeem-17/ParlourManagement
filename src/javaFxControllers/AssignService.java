@@ -122,13 +122,12 @@ public class AssignService {
         });
     }
 
-    private ObservableList<AssignS> getItems() {
+    private void getItems() {
         observableList = FXCollections.observableArrayList();
         List<Service> serviceList = DbServices.getInstance().getAllServicesRecords();
         for (Service s : serviceList) {
-            AssignS temp = new AssignS(s.getServiceName(), s.getServicePrice());
+            AssignS temp = new AssignS(s.getServiceName(), String.valueOf(s.getServicePrice()));
             observableList.add(temp);
         }
-        return observableList;
     }
 }

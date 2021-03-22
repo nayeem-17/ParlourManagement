@@ -1,11 +1,11 @@
 package javaFxControllers;
 
 import dbOperations.DbServices;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import entities.Service;
+import java.sql.SQLException;
 
 public class AdminServiceAddingController {
 
@@ -18,11 +18,11 @@ public class AdminServiceAddingController {
     private TextField servicePrice;
 
     @FXML
-    void addService(ActionEvent event) {
+    void addService() throws SQLException {
         validateInput();
     }
 
-    private void validateInput() {
+    private void validateInput() throws SQLException {
         if (serviceName.getText().isEmpty()) {
             showAlert(Alert.AlertType.ERROR, "Must provide service name", "Please enter service name");
         } else if (servicePrice.getText().isEmpty()) {
@@ -33,11 +33,12 @@ public class AdminServiceAddingController {
         }
     }
 
-    private void addServiceToDatabase(String serviceName, Double servicePrice) {
+    private void addServiceToDatabase(String serviceName, Double servicePrice) throws SQLException {
+
         Service service = new Service();
 
         service.setServiceName(serviceName);
-        service.setServicePrice(servicePrice+"");
+        service.setServicePrice(servicePrice);
 
         String response = dbServices.addNewService(service);
 

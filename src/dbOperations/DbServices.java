@@ -3,8 +3,8 @@ package dbOperations;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import entities.Appointment;
 import entities.Service;
+import entities.TimeSlots;
 
 public class DbServices {
 
@@ -44,11 +44,17 @@ public class DbServices {
         return dbServices;
     }
 
-    private void createTablesIfNotExists() throws SQLException {
+    public Connection getConnection() {
+        return connection;
+    }
+
+    private void createTablesIfNotExists() throws SQLException
+    {
         if(connection!=null)
         {
             Statement statement = connection.createStatement();
 
+            //create appointment table if not exists
             {
                 String createAdminTable = "CREATE TABLE appointment(appointmentId Integer PRIMARY KEY IDENTITY(1, 1), appointmentNumber varchar(255), " +
                         "name varchar(255), email varchar(255),  phoneNumber varchar(255), appointMakingDate date, appointmentTime varchar(255), selectedService varchar(255)," +
@@ -65,6 +71,7 @@ public class DbServices {
                 }
             }
 
+            //create time slots table if not exists
             {
                 String createTimeSlotTable = "CREATE TABLE timeSlots(timeSlots varchar(255))";
 
@@ -79,6 +86,7 @@ public class DbServices {
                 }
             }
 
+            //create service table if not exists
             {
                 String createServiceTable = "CREATE TABLE service(id INTEGER PRIMARY KEY Identity(1,1) , serviceName varchar(255)," +
                         "servicePrice DOUBLE PRECISION)";
@@ -94,6 +102,7 @@ public class DbServices {
                 }
             }
 
+            //create admin table if not exists
             {
                 String createAdminTable = "CREATE TABLE admin(adminId INTEGER PRIMARY KEY Identity(1,1) " +
                         ", name varchar(255), password varchar(255), email varchar(255), contactNumber varchar(255))" ;
@@ -108,6 +117,42 @@ public class DbServices {
                     System.out.println("Successfully created admin table");
                 }
             }
+
+            //create customer table if not exists
+            {
+                String createCustomer =
+                        "CREATE TABLE Customer(username VARCHAR(255) NOT NULL, " +
+                        "email varchar(255) NOT NULL, mobile varchar(20), creationDate varchar(255) NOT NULL)";
+
+                ResultSet customerTable = connection.getMetaData().getTables(null, null,
+                        "Customer", null);
+
+                if (customerTable.next()) {
+                    System.out.println("Customer table already exists");
+                } else {
+                    statement.executeUpdate(createCustomer);
+                    System.out.println("Successfully created customer table");
+                }
+            }
+
+            //create invoice table if not exists
+            {
+                String createInvoice =
+                        "CREATE TABLE Invoice(" +
+                                "customername varchar(255) NOT NULL, servicename varchar(255), " +
+                                "serviceprice varchar(255), date varchar(255), id varchar(255))";
+
+                ResultSet createInvoiceTable = connection.getMetaData().getTables(null, null,
+                        "Invoice", null);
+
+                if (createInvoiceTable.next()) {
+                    System.out.println("Invoice table already exists");
+                } else {
+                    statement.executeUpdate(createInvoice);
+                    System.out.println("Successfully created invoice table");
+                }
+            }
+
         }
         else
         {
@@ -115,102 +160,6 @@ public class DbServices {
         }
 
     }
-
-    public synchronized String addAnAppointments(Appointment appointment) {
-
-        if(connection!=null)
-        {
-            try {
-
-                PreparedStatement preparedStatement = connection.prepareStatement("INSERT INTO appointment " +
-                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-                preparedStatement.setString(1, String.valueOf(appointment.getAppointmentNumber()));
-                preparedStatement.setString(2, appointment.getName());
-                preparedStatement.setString(3, appointment.getEmail());
-                preparedStatement.setString(4, appointment.getPhoneNumber());
-                preparedStatement.setDate(5, appointment.getAppointMakingDate());
-                preparedStatement.setString(6, appointment.getAppointmentTime());
-                preparedStatement.setString(7, appointment.getSelectedService());
-                preparedStatement.setDate(8, appointment.getAppointmentDate());
-                preparedStatement.setString(9, appointment.getRemark());
-                preparedStatement.setString(10, appointment.getStatus());
-                preparedStatement.setDate(11, appointment.getRemarkDate());
-
-                if(preparedStatement.executeUpdate()>0)
-                {
-                    return "Successfully made an appointment. Appointment number is: " + appointment.getAppointmentNumber();
-                }
-                else
-                {
-                    return "Can not make an appointment, please try again";
-                }
-
-            } catch (Exception e) {
-                System.out.println("Error occurred. Error is:- "+e.getMessage());
-                return "Can not make an appointment, please try again";
-            }
-        }
-        else
-        {
-            System.out.println("Can not connect to database, please try again");
-            return "Can not make an appointment, please try again";
-        }
-    }
-
-
-    public synchronized void deleteAppointment(String appointmentNumber) throws SQLException {
-        if(connection!=null)
-        {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM appointment WHERE appointmentId = ?");
-            preparedStatement.setString(1, appointmentNumber);
-
-            System.out.println(preparedStatement);
-
-            try {
-                preparedStatement.executeUpdate();
-                System.out.println("Appointment deleted successfully!");
-            } catch (SQLException e) {
-                System.out.println("Error while deleting appointment, Error is: " + e.getMessage());
-            }
-        }
-        else
-        {
-            System.out.println("Can not connect to database, please try again");
-        }
-    }
-
-    public List<Appointment> getAllAppointments() {
-
-        List<Appointment> appointments = new ArrayList<>();
-
-        try {
-            Statement statement = connection.createStatement();
-            String query = "SELECT * FROM appointment";
-
-            ResultSet rs = statement.executeQuery(query);
-
-            while (rs.next()) {
-                Appointment appointment = new Appointment();
-                appointment.setAppointmentNumber(rs.getString("appointment id"));
-                appointment.setName(rs.getString("name"));
-                appointment.setEmail(rs.getString("email"));
-                appointment.setAppointMakingDate(rs.getString("create at"));
-                appointment.setPhoneNumber(rs.getString("mobile"));
-                appointment.setSelectedService(rs.getString("service"));
-                appointment.setAppointmentDate(rs.getString("date"));
-                appointment.setAppointmentTime(rs.getString("time"));
-                appointment.setStatus(rs.getString("status"));
-
-                appointments.add(appointment);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return appointments;
-    }
-
-
 
 
     public synchronized String addNewService(Service service) throws SQLException {
@@ -330,6 +279,20 @@ public class DbServices {
         {
             System.out.println("Can not connect to database, please try again");
             return null;
+        }
+    }
+
+    public synchronized String saveTime(String text) {
+        TimeSlots timeSlots = new TimeSlots();
+        timeSlots.setTimeSlots(text);
+
+        try {
+//            entityManager.getTransaction().begin();
+//            entityManager.persist(timeSlots);
+//            entityManager.getTransaction().commit();
+            return "Successfully added time slot to database";
+        } catch (Exception e) {
+            return "Can not add time slot to database, please try again";
         }
     }
 

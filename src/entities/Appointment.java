@@ -54,8 +54,8 @@ public class Appointment implements Serializable {
         return appointmentNumber;
     }
 
-    public void setAppointmentNumber(UUID appointmentNumber) {
-        this.appointmentNumber = appointmentNumber;
+    public void setAppointmentNumber(String appointmentNumber) {
+        this.appointmentNumber = UUID.fromString(appointmentNumber);
     }
 
     public String getName() {

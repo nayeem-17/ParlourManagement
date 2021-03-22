@@ -1,10 +1,9 @@
 package entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Customer implements Serializable {
+
     private String creationDate;
     private String name;
     private String email;
@@ -51,15 +50,5 @@ public class Customer implements Serializable {
 
     public void setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "creationDate='" + creationDate + '\'' +
-                ", name='" + name + '\'' +
-                ", email='" + email + '\'' +
-                ", mobileNumber='" + mobileNumber + '\'' +
-                '}';
     }
 }

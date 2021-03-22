@@ -1,5 +1,6 @@
 package javaFxControllers;
 
+import dbOperations.AppointmentOperations;
 import dbOperations.DbServices;
 import entities.Appointment;
 import java.io.IOException;
@@ -22,7 +23,8 @@ import javafx.stage.Stage;
 
 public class HomeAppointmentController {
 
-    DbServices dbServices = DbServices.getInstance();
+    private final DbServices dbServices = DbServices.getInstance();
+    private final AppointmentOperations appointmentOperations = new AppointmentOperations();
 
     @FXML
     private BorderPane homeBorderPane;
@@ -94,13 +96,15 @@ public class HomeAppointmentController {
     }
 
     @FXML
-    void aboutUs()
-    {
-
+    void aboutUs() throws IOException {
+        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmls/about_us.fxml")));
+        Stage primaryStage = (Stage) homeBorderPane.getScene().getWindow();
+        primaryStage.getScene().setRoot(root);
     }
 
     @FXML
-    void admin() throws IOException {
+    void admin() throws IOException
+    {
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmls/AdminSigninPage.fxml")));
         Stage primaryStage = (Stage) homeBorderPane.getScene().getWindow();
         primaryStage.getScene().setRoot(root);
@@ -113,6 +117,7 @@ public class HomeAppointmentController {
 
         Stage stage = (Stage) selectServices.getScene().getWindow();
         Scene scene = null;
+
         try {
             scene = new Scene(loader.load(), 1114, 627);
         } catch (IOException e) {
@@ -129,7 +134,6 @@ public class HomeAppointmentController {
 
     @FXML
     void services() throws IOException {
-
         Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getClassLoader().getResource("fxmls/Services.fxml")));
         Stage primaryStage = (Stage) homeBorderPane.getScene().getWindow();
         primaryStage.getScene().setRoot(root);
@@ -171,7 +175,7 @@ public class HomeAppointmentController {
 
         Appointment appointment = new Appointment();
 
-        appointment.setAppointmentNumber(UUID.randomUUID());
+        appointment.setAppointmentNumber(String.valueOf(UUID.randomUUID()));
         appointment.setName(appointmentMakerName.getText());
         appointment.setEmail(appointmentMakerEmail.getText());
         appointment.setPhoneNumber(appointmentMakerPhone.getText());
@@ -180,7 +184,7 @@ public class HomeAppointmentController {
         appointment.setSelectedService(selectedService.getSelectionModel().getSelectedItem());
         appointment.setAppointmentDate(java.sql.Date.valueOf(LocalDate.now()));
 
-        final String response = dbServices.addAnAppointments(appointment);
+        final String response = appointmentOperations.addAnAppointments(appointment);
 
         if (response.equals("Can not make an appointment, please try again")) {
             Platform.runLater(() -> showAlert(Alert.AlertType.ERROR, "Error making an appointment", response));

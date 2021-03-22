@@ -2,10 +2,7 @@ package controllers;
 
 import dbOperations.DbServices;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
 
 
 public class LoginController {
@@ -14,10 +11,21 @@ public class LoginController {
 
         try {
             Connection connection = DbServices.getInstance().getConnection();
-            Statement statement = connection.createStatement(ResultSet.TYPE_FORWARD_ONLY, ResultSet.CONCUR_READ_ONLY);
-            String query = "SELECT * FROM admin where username= '" + usrname.trim() + "'";
-            ResultSet rs = statement.executeQuery(query);
-            return rs.getString("password").equals(password.trim());
+
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT * FROM admin WHERE name = ?");
+            preparedStatement.setString(1, usrname);
+
+            ResultSet rs = preparedStatement.executeQuery();
+
+            String passwordAdmin = null;
+
+            while(rs.next())
+            {
+                passwordAdmin = rs.getString("password");
+            }
+
+            assert passwordAdmin != null;
+            return passwordAdmin.equals(password.trim());
 
         } catch (SQLException e) {
             e.printStackTrace();

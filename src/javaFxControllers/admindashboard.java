@@ -1,63 +1,66 @@
-/**
- * Sample Skeleton for 'AdminDashboard.fxml' Controller Class
- */
-
 package javaFxControllers;
 
-import java.net.URL;
 import java.util.List;
-import java.util.ResourceBundle;
-
+import dbOperations.AppointmentOperations;
+import dbOperations.CustomerOperations;
 import dbOperations.DbServices;
 import entities.Appointment;
 import entities.Customer;
 import entities.Service;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 
 public class admindashboard {
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    private final AppointmentOperations appointmentOperations = new AppointmentOperations();
+    private final CustomerOperations customerOperations = new CustomerOperations();
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    public AnchorPane adminPane;
 
-    @FXML // fx:id="customerNumber"
-    private Label customerNumber; // Value injected by FXMLLoader
+    @FXML
+    private javafx.scene.text.Text customerNumber;
 
-    @FXML // fx:id="appointmentNumber"
-    private Label appointmentNumber; // Value injected by FXMLLoader
+    @FXML
+    private javafx.scene.text.Text appointmentNumber;
 
-    @FXML // fx:id="acceptedApt"
-    private Label acceptedApt; // Value injected by FXMLLoader
+    @FXML
+    private javafx.scene.text.Text acceptedApt;
 
-    @FXML // fx:id="rejectedApts"
-    private Label rejectedApts; // Value injected by FXMLLoader
+    @FXML
+    private javafx.scene.text.Text rejectedApts;
 
-    @FXML // fx:id="totalServices"
-    private Label totalServices; // Value injected by FXMLLoader
+    @FXML
+    private javafx.scene.text.Text totalServices;
 
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
-        assert customerNumber != null : "fx:id=\"customerNumber\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        assert appointmentNumber != null : "fx:id=\"appointmentNumber\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        assert acceptedApt != null : "fx:id=\"acceptedApt\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        assert rejectedApts != null : "fx:id=\"rejectedApts\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        assert totalServices != null : "fx:id=\"totalServices\" was not injected: check your FXML file 'AdminDashboard.fxml'.";
-        List<Customer> customers = DbServices.getInstance().getCustomer();
-        customerNumber.setText(customers.size() + "");
-        List<Appointment> appointments = DbServices.getInstance().getAllAppointments();
-        appointmentNumber.setText(appointments.size() + "");
-        int accepted = 0;
-        for (Appointment a : appointments) {
-            if (a.getStatus().equals("accepted")) accepted++;
-        }
-        acceptedApt.setText(accepted + "");
-        rejectedApts.setText((appointments.size() - accepted) + "");
-        List<Service> services = DbServices.getInstance().getAllServicesRecords();
-        totalServices.setText(services.size() + "");
+
+        new Thread(() -> {
+            List<Customer> customers = customerOperations.getCustomer();
+            List<Appointment> appointments = appointmentOperations.getAllAppointments();
+
+            Platform.runLater(() -> {
+                customerNumber.setText(customers.size() + "");
+                appointmentNumber.setText(appointments.size() + "");
+
+                int accepted = 0;
+
+                for (Appointment a : appointments) {
+
+                    if (a.getStatus().equals("accepted"))
+                        accepted++;
+
+                }
+
+                acceptedApt.setText(accepted + "");
+                rejectedApts.setText((appointments.size() - accepted) + "");
+                List<Service> services = DbServices.getInstance().getAllServicesRecords();
+                totalServices.setText(services.size() + "");
+            });
+
+        }).start();
     }
 }

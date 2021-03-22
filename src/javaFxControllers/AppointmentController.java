@@ -1,11 +1,7 @@
 package javaFxControllers;
 
-import java.net.URL;
 import java.sql.SQLException;
-import java.util.List;
-import java.util.ResourceBundle;
-import controllers.AptController;
-import dbOperations.DbServices;
+import dbOperations.AppointmentOperations;
 import entities.Appointment;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
@@ -18,15 +14,9 @@ import javafx.scene.control.cell.PropertyValueFactory;
 
 public class AppointmentController {
 
-    private final DbServices dbServices = DbServices.getInstance();
+    private final AppointmentOperations appointmentOperations = new AppointmentOperations();
 
     ObservableList<Appointment> allAppointments;
-
-    @FXML
-    private ResourceBundle resources;
-
-    @FXML
-    private URL location;
 
     @FXML
     private TableView<Appointment> serviceTable;
@@ -91,11 +81,10 @@ public class AppointmentController {
 
             new Thread(() -> {
                 try {
-                    dbServices.deleteAppointment(String.valueOf(allAppointments.get(index).getAppointmentNumber()));
 
-                    Platform.runLater(() -> {
-                        allAppointments.remove(index);
-                    });
+                    appointmentOperations.deleteAppointment(String.valueOf(allAppointments.get(index).getAppointmentNumber()));
+
+                    Platform.runLater(() -> allAppointments.remove(index));
 
                 } catch (SQLException throwable) {
                     throwable.printStackTrace();
@@ -107,23 +96,22 @@ public class AppointmentController {
 
             int index = serviceTable.getSelectionModel().getSelectedIndex();
             allAppointments.get(index).setStatus("accepted");
-            AptController.updateStatus(allAppointments.get(index).getAppointmentNumber());
+
+            new Thread(() ->
+                    appointmentOperations.updateStatus(
+                            allAppointments.get(index).getAppointmentId())).start();
+
             serviceTable.refresh();
 
         });
 
     }
 
-    private ObservableList<Appointment> getItems() {
+    private void getItems() {
 
         this.allAppointments = FXCollections.observableArrayList();
 
-        List<Appointment> temp = DbServices.getInstance().getAllAppointments();
-
-        for (Appointment apt : temp) {
-            System.out.println(apt);
-            allAppointments.add(apt);
-        }
-        return allAppointments;
+        new Thread(() -> Platform.runLater(()->
+                allAppointments.addAll(appointmentOperations.getAllAppointments()))).start();
     }
 }

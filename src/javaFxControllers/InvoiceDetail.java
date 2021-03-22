@@ -1,17 +1,9 @@
-/**
- * Sample Skeleton for 'InvoiceDetail.fxml' Controller Class
- */
-
 package javaFxControllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.ResourceBundle;
-
 import controllers.InvoiceController;
-import dbOperations.DbServices;
+import dbOperations.CustomerOperations;
 import entities.Customer;
 import entities.InvoiceData;
 import entities.Service;
@@ -32,42 +24,37 @@ import javafx.stage.Stage;
 public class InvoiceDetail {
 
     private InvoiceData invoice;
+    private final CustomerOperations customerOperations = new CustomerOperations();
 
-    @FXML // ResourceBundle that was given to the FXMLLoader
-    private ResourceBundle resources;
+    @FXML
+    private Label name;
 
-    @FXML // URL location of the FXML file that was given to the FXMLLoader
-    private URL location;
+    @FXML
+    private Label email;
 
-    @FXML // fx:id="name"
-    private Label name; // Value injected by FXMLLoader
+    @FXML
+    private Label number;
 
-    @FXML // fx:id="email"
-    private Label email; // Value injected by FXMLLoader
+    @FXML
+    private Label date;
 
-    @FXML // fx:id="number"
-    private Label number; // Value injected by FXMLLoader
+    @FXML
+    private TableView<Service> serviceTable;
 
-    @FXML // fx:id="date"
-    private Label date; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Service, String> serviceName;
 
-    @FXML // fx:id="serviceTable"
-    private TableView<Service> serviceTable; // Value injected by FXMLLoader
+    @FXML
+    private TableColumn<Service, String> serviceCost;
 
-    @FXML // fx:id="serviceName"
-    private TableColumn<Service, String> serviceName; // Value injected by FXMLLoader
+    @FXML
+    private Label totalCost;
 
-    @FXML // fx:id="serviceCost"
-    private TableColumn<Service, String> serviceCost; // Value injected by FXMLLoader
+    @FXML
+    private Button backButton;
 
-    @FXML // fx:id="totalCost"
-    private Label totalCost; // Value injected by FXMLLoader
-
-    @FXML // fx:id="backButton"
-    private Button backButton; // Value injected by FXMLLoader
-
-    @FXML // fx:id="pane"
-    private AnchorPane pane; // Value injected by FXMLLoader
+    @FXML
+    private AnchorPane pane;
 
     ObservableList<Service> observableList;
 
@@ -76,13 +63,21 @@ public class InvoiceDetail {
     }
 
     public void setInvoice(InvoiceData invoice) {
+
         this.invoice = invoice;
         System.out.println(this.invoice);
+
         getItems();
+
+
         serviceTable.setItems(observableList);
-        List<Customer> customers = DbServices.getInstance().getCustomer();
+
+        List<Customer> customers = customerOperations.getCustomer();
+
         System.out.println(this.invoice);
+
         for (Customer c : customers) {
+
             if (c.getName().equals(this.invoice.getCutomerName())) {
                 name.setText(this.invoice.getCutomerName());
                 email.setText(c.getEmail());
@@ -95,8 +90,8 @@ public class InvoiceDetail {
     }
 
     @FXML
-        // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
+
         assert name != null : "fx:id=\"name\" was not injected: check your FXML file 'InvoiceDetail.fxml'.";
         assert email != null : "fx:id=\"email\" was not injected: check your FXML file 'InvoiceDetail.fxml'.";
         assert number != null : "fx:id=\"number\" was not injected: check your FXML file 'InvoiceDetail.fxml'.";
@@ -128,15 +123,14 @@ public class InvoiceDetail {
         });
     }
 
-    public ObservableList<Service> getItems() {
+    public void getItems() {
         observableList = FXCollections.observableArrayList();
         List<Service> services = InvoiceController.getServices(this.invoice.getInvoiceId());
-        int tCost = 0;
+        double tCost = 0;
         for (Service i : services) {
-            tCost += Integer.valueOf(i.getServicePrice());
+            tCost += i.getServicePrice();
             observableList.add(i);
         }
         totalCost.setText(tCost + "");
-        return observableList;
     }
 }

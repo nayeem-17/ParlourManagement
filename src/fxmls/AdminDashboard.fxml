@@ -2,53 +2,126 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="adminPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.admindashboard">
-    <children>
-        <VBox layoutX="291.0" layoutY="91.0" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <HBox prefHeight="256.0" prefWidth="822.0">
-                    <children>
-                        <Label contentDisplay="CENTER" prefHeight="256.0" prefWidth="219.0" text="Total Customer" textAlignment="CENTER">
-                            <font>
-                                <Font name="DejaVu Sans ExtraLight" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="customerNumber" prefHeight="257.0" prefWidth="83.0" text="0" />
-                        <Label prefHeight="254.0" prefWidth="197.0" text="Total Appointments" textAlignment="JUSTIFY">
-                            <font>
-                                <Font name="DejaVu Sans ExtraLight" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="appointmentNumber" prefHeight="255.0" prefWidth="67.0" text="0" />
-                        <Label prefHeight="255.0" prefWidth="210.0" text="Accepted Appoinment">
-                            <font>
-                                <Font name="DejaVu Sans ExtraLight" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="acceptedApt" prefHeight="256.0" prefWidth="105.0" text="0" />
-                    </children>
-                </HBox>
-                <HBox prefHeight="259.0" prefWidth="822.0">
-                    <children>
-                        <Label prefHeight="257.0" prefWidth="217.0" text="Rejected Appointments">
-                            <font>
-                                <Font name="DejaVu Sans ExtraLight" size="18.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="rejectedApts" prefHeight="258.0" prefWidth="79.0" text="0" />
-                        <Label prefHeight="264.0" prefWidth="188.0" text="Total Services">
-                            <font>
-                                <Font name="DejaVu Sans ExtraLight" size="19.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="totalServices" prefHeight="247.0" prefWidth="70.0" text="0" />
-                    </children>
-                </HBox>
-            </children>
-        </VBox>
-    </children>
+<AnchorPane fx:id="adminPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="773.0" prefWidth="898.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="javaFxControllers.admindashboard">
+
+    <AnchorPane layoutY="114.0" prefHeight="200.0" prefWidth="898.0" style="-fx-background-color: transparent;">
+        <Pane layoutX="38.0" layoutY="35.0" prefHeight="124.0" prefWidth="360.0">
+            <Pane prefHeight="124.0" prefWidth="256.0" style="-fx-background-color: blue;">
+                <Text fill="WHITE" layoutX="106.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="64.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Customer">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+            <Pane layoutX="256.0" prefHeight="124.0" prefWidth="104.0" style="-fx-background-color: #99c2ff;">
+                <Text fx:id="customerNumber" fill="WHITE" layoutX="44.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+        </Pane>
+        <Pane layoutX="491.0" layoutY="35.0" prefHeight="124.0" prefWidth="360.0">
+            <Pane prefHeight="124.0" prefWidth="256.0" style="-fx-background-color: #FF0000;">
+                <Text fill="WHITE" layoutX="106.0" layoutY="48.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="34.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+            <Pane layoutX="256.0" prefHeight="124.0" prefWidth="104.0" style="-fx-background-color: #F67D7D;">
+                <Text fx:id="appointmentNumber" fill="WHITE" layoutX="44.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+        </Pane>
+    </AnchorPane>
+    <AnchorPane layoutY="342.0" prefHeight="200.0" prefWidth="898.0" style="-fx-background-color: transparent;">
+        <Pane layoutX="50.0" layoutY="35.0" prefHeight="124.0" prefWidth="360.0">
+            <Pane prefHeight="124.0" prefWidth="256.0" style="-fx-background-color: blue;">
+                <Text fill="WHITE" layoutX="87.0" layoutY="42.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Accepted">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="34.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+            <Pane layoutX="256.0" prefHeight="124.0" prefWidth="104.0" style="-fx-background-color: #99c2ff;">
+                <Text fx:id="acceptedApt" fill="WHITE" layoutX="44.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+        </Pane>
+        <Pane layoutX="460.0" layoutY="35.0" prefHeight="124.0" prefWidth="360.0">
+            <Pane prefHeight="124.0" prefWidth="256.0" style="-fx-background-color: #FF0000;">
+                <Text fill="WHITE" layoutX="90.0" layoutY="45.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rejected">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="34.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Appointments">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+            <Pane layoutX="256.0" prefHeight="124.0" prefWidth="104.0" style="-fx-background-color: #F67D7D;">
+                <Text fx:id="rejectedApts" fill="WHITE" layoutX="44.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+        </Pane>
+    </AnchorPane>
+    <AnchorPane layoutY="573.0" prefHeight="200.0" prefWidth="898.0" style="-fx-background-color: transparent;">
+        <Pane layoutX="269.0" layoutY="38.0" prefHeight="124.0" prefWidth="360.0">
+            <Pane prefHeight="124.0" prefWidth="256.0" style="-fx-background-color: #FF0000;">
+                <Text fill="WHITE" layoutX="106.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Total">
+                    <font>
+                        <Font size="20.0" />
+                    </font>
+                </Text>
+                <Text fill="WHITE" layoutX="64.0" layoutY="94.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Services">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+            <Pane layoutX="256.0" prefHeight="124.0" prefWidth="104.0" style="-fx-background-color: #F67D7D;">
+                <Text fx:id="totalServices" fill="WHITE" layoutX="44.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="4">
+                    <font>
+                        <Font size="30.0" />
+                    </font>
+                </Text>
+            </Pane>
+        </Pane>
+    </AnchorPane>
+   <Label layoutX="269.0" layoutY="2.0" prefHeight="71.0" prefWidth="360.0" text="Admin Dashboard" textFill="RED">
+      <font>
+         <Font name="System Bold" size="40.0" />
+      </font>
+   </Label>
 </AnchorPane>
